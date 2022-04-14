@@ -100,6 +100,54 @@ class Admin extends Database{
         return $result;
     }
 
+    // Website get visitors
+    public function website_visitors(){
+        // $sql = "SELECT ip_address, COUNT(DISTINCT(ip_address)) FROM ken_web.visits GROUP BY ip_address";
+        $sql = "SELECT COUNT(DISTINCT(ip_address)) as visits FROM ken_web.visits";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+        
+    }
+
+
+    // Website get visitors
+    public function website_visits(){
+        // $sql = "SELECT ip_address, COUNT(DISTINCT(ip_address)) FROM ken_web.visits GROUP BY ip_address";
+        $sql = "SELECT ip_address, COUNT(*) as visits FROM ken_web.visits GROUP BY ip_address";
+        // $sql = "SELECT COUNT(ip_address) FROM asjzhcle_ken_web.visits";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+        
+    }
+
+
+        // Website get visitors by date
+    public function website_visits_date(){
+        
+        $sql = "SELECT COUNT(*) as visits, DATE_FORMAT(created_at,'%Y-%m-%d') as date FROM ken_web.visits GROUP BY DAY(created_at) ORDER BY(created_at) ASC";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+        
+    }
+
     // Handle fetch all registered 
     public function fetchAllUsers($val){
         $sql = "SELECT * FROM ken_web.users WHERE deleted != $val";

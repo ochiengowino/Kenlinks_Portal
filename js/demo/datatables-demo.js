@@ -8,6 +8,15 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function() {
+    $('#dataTable2').DataTable({
+        // dom: 'Bfrtip',
+        // buttons: ['excel', 'pdf', 'csv', 'print'],
+        order: [0, 'desc'],
+        "bDestroy": true
+    });
+});
+
 // 
 // // {
 //     extend: 'excel',

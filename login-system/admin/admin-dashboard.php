@@ -83,7 +83,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                            Visits</div>
+                           Portal Visits</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?php $data =  $count->site_hits(); echo $data['hits'];?></div>
                     </div>
                     <div class="col-auto">
@@ -192,13 +192,40 @@
             </div>
         </div>
     </div>
+
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Different Users Visiting the Website
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="float:right;">        
+                            <?php $data =  $count->website_visitors(); 
+                            foreach($data as $key => $val){
+                                echo $val['visits'];
+                            }
+                            
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <!--<i class="fas fa-comments fa-2x text-gray-300"></i>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
 <div class="row">
 
     <!-- Pie Chart -->
-    <div class="col-xl-4 col-lg-5">
+    <div class="col-xl-6 col-lg-5">
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -224,7 +251,7 @@
 
 
      <!-- Pie Chart -->
-     <div class="col-xl-4 col-lg-5">
+    <div class="col-xl-6 col-lg-5">
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -247,10 +274,80 @@
             </div>
         </div>
     </div>
+
+    
 </div>
 
 
+<div class="row">
+     <div class="col-xl col-lg">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Website Daily Visitors</h6>
+            </div>
+           
+            <!-- Card Body -->
+            <div class="card-body" id="chartThree" style="height: 370px; width: 100%;">
+                
+            </div>
+             
+        </div>
+    </div>
+</div>
 
+
+<div class="row">
+    <div class="col-xl-6 col-lg-5">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Website Visitors</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                
+                    
+                    <?php 
+                        $data =  $count->website_visits(); 
+                        // print_r($data);
+                        $output = "";
+                        $output .= 
+                        "<table class='table table-bordered table-striped' id='dataTable2' width='100%' cellspacing='0'>
+                            <thead>
+                                <tr>
+                                    <th>IP ADDRESS</th>
+                                    <th>VISITS</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>IP ADDRESS</th>
+                                    <th>VISITS</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>";
+                        foreach($data as $key => $value){
+                            // print_r($value['ip_address']);
+                            
+                            $output .= 
+                            "<tr>
+                            <td>".$value['ip_address']."</td>
+                            <td>".$value['visits']."</td>
+                            </tr>";
+                        }
+                        $output .= "
+                                    </tbody>
+                                </table>";
+                                
+                        echo $output;
+                        
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- /.container-fluid -->
 
@@ -347,10 +444,6 @@
         }
 
 
-
-
-
-
         
         // Load the Visualization API and the corechart package.
         google.charts.load('current', { 'packages': ['corechart'] });
@@ -388,6 +481,58 @@
             var chart = new google.visualization.PieChart(document.getElementById('chartTwo'));
             chart.draw(data, options);
         }
+
+
+
+        // Load the Visualization API and the corechart package.
+        // google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.load('current', {'packages':['line']});
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+
+            // Create the data table.
+            var data = new google.visualization.arrayToDataTable([
+                ['Date', 'Visits'],
+                <?php  
+                $data =  $count->website_visits_date(); 
+                    
+                    foreach($data as $key => $value){
+                    
+                        echo '["'.$value['date'].'", '.$value['visits'].'],';
+                       
+                    }
+
+                ?>
+            ]);
+
+               var options = {
+                    chart: {
+                      title: 'Kenlinks Website Visits',
+                      subtitle: 'Daily Trend'
+                    },
+                    series: {
+                    // Gives each series an axis name that matches the Y-axis below.
+                    0: {axis: 'Visits'},
+                    },
+                    axes: {
+                        // Adds labels to each axis; they don't have to match the axis names.
+                        y: {
+                            Visits: {label: 'Visits (Per Day)'},
+                        }
+                    }
+                };
+       
+            // Instantiate and draw our chart, passing in some options.
+            // var chart = new google.visualization.LineChart(document.getElementById('chartThree'));
+            var chart = new google.charts.Line(document.getElementById('chartThree'));
+            chart.draw(data, options);
+        }
+
 
     </script>
    

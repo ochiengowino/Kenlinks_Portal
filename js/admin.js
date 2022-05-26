@@ -267,7 +267,8 @@ $(document).ready(function() {
 
     $('#profile-update-form').on('submit', function(e) {
         e.preventDefault();
-
+        dat = $("#profile-update-form").serialize()
+        console.log(dat)
         $.ajax({
             type: "POST",
             url: "process.php",

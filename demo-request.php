@@ -101,6 +101,15 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+            
+            <li class="nav-item active">
+                <a class="nav-link" href="africities.php">
+                    <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
+                    <span>AfriCities</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">

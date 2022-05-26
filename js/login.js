@@ -29,6 +29,8 @@ $(document).ready(function() {
             if ($('#register-form')[0].checkValidity()) {
 
                 e.preventDefault();
+                // data = $("#register-form").serialize()
+                // console.log(data)
                 $('#register-btn').val('Please wait...');
 
                 if ($('#rpassword').val() != $('#cpassword').val()) {

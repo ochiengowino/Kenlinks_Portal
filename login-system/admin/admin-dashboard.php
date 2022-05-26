@@ -2,6 +2,19 @@
     require_once "admin-db.php";
 
     $count = new Admin();
+
+
+    $ipaddress = $_SERVER['REMOTE_ADDR'];
+ $page = "http://".$_SERVER['HTTP_HOST']."".$_SERVER['PHP_SELF'];
+ $referrer = $_SERVER['HTTP_REFERER'];
+ $datetime = date("F j, Y, g:i a");
+ $useragent = $_SERVER['HTTP_USER_AGENT'];
+
+//  echo "<p>IP Address : ".$ipaddress."</p>";
+//  echo "<p>Current Page : ".$page."</p>";
+//  echo "<p>Referrer : ".$referrer."</p>";
+//  echo "<p>Current Time : ".$datetime."</p>";
+//  echo "<p>Browser : ".$useragent."</p>";
 ?>
 
 
@@ -343,7 +356,9 @@
                                 
                         echo $output;
                         
-                    ?>
+                    //     $dat =  $count->website_visits_date(); 
+                    // print_r($dat);
+                    // ?>
                 </div>
             </div>
         </div>

@@ -1,4 +1,6 @@
-<?php include "header.php";
+<?php 
+
+include "header.php";
 
 if(!$_SESSION['user']){
 
@@ -16,6 +18,7 @@ $sql = "UPDATE ken_web.counter SET hits = hits+1 WHERE id = 1";
 $stmt = $db->conn->prepare($sql);
 
 $stmt->execute();
+
 ?>
 
                 <!-- Begin Page Content -->

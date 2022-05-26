@@ -24,7 +24,7 @@ $cdob = $data['dob'];
 $cphoto = $data['photo'];
 $created = $data['created_at'];
 $verified = $data['verified'];
-
+// print_r($cphoto);
 $reg_on = date('d, M Y', strtotime($created));
 $fname = strtok($cname, ' ');
 

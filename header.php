@@ -88,9 +88,9 @@ require_once "login-system/session.php";
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="demo-request.php">
+                <a class="nav-link" href="africities.php">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
-                    <span>Demo Request</span></a>
+                    <span>Hotels</span></a>
             </li>
 
             <!-- Divider -->
@@ -98,13 +98,42 @@ require_once "login-system/session.php";
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="contact-request.php">
+                <a class="nav-link" href="transport.php">
                     <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
-                    <span>Contact Request</span></a>
+                    <span>Transport</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+
+            <li class="nav-item active">
+                <a class="nav-link" href="exhibitorst.php">
+                    <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
+                    <span>Exhibitors</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- <li class="nav-item active">
+                <a class="nav-link" href="africities.php" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                    aria-controls="collapseTwo">
+               
+                    <span>AfriCities</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Categories:</h6>
+                        <a class="collapse-item active" href="africities.php">Hotels</a>
+                        <a class="collapse-item active" href="transport.php">Transport</a>
+                        <a class="collapse-item active" href="exhibitors.php">Exhibitors</a>
+                    </div>
+                </div>
+
+            </li> -->
+            <!-- Divider -->
+            <!-- <hr class="sidebar-divider"> -->
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
